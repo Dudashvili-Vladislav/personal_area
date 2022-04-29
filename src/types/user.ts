@@ -4,13 +4,14 @@ export enum UserActionTypes {
     FETCH_USERS_ERROR = 'FETCH_USERS_ERROR'
 }
 
+
 interface FetchUsersAction {
     type: UserActionTypes.FETCH_USERS
 }
 
 interface FetchUsersSuccessAction {
     type: UserActionTypes.FETCH_USERS_SUCCESS;
-    payload: any[]
+    payload: IUser[]
 }
 
 interface FetchUsersErrorAction {
@@ -20,8 +21,18 @@ interface FetchUsersErrorAction {
 
 export type UserAction = FetchUsersAction | FetchUsersSuccessAction | FetchUsersErrorAction
 
+export interface IUser {
+    id: number;
+    name: string;
+    comment: string;
+    created_at: string;
+    updated_at: null | string;
+
+}
+
 export interface UserState {
     users: any[];
     loading: boolean;
     error: null | string;
+    isAuth: boolean
 }

@@ -3,7 +3,7 @@ import {Dispatch} from "redux";
 import $api from "../../api";
 
 
-export const fetchUsers = () => {
+export const fetchUsers = ():any => {
     return async (dispatch: Dispatch<UserAction>) => {
         try{
             dispatch({type: UserActionTypes.FETCH_USERS})

@@ -1,12 +1,9 @@
 import React from 'react'
-import {Users} from "./pages/Users/Users";
+import {AppRouter} from './Routes/Router'
 
-const App = () => {
-  return (
-    <div>
-      <Users/>
-    </div>
-  )
+export const App = () => {
+
+
+  return <AppRouter/>
 }
 
-export default App
