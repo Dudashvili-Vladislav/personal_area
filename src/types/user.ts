@@ -4,7 +4,6 @@ export enum UserActionTypes {
     FETCH_USERS_ERROR = 'FETCH_USERS_ERROR'
 }
 
-
 interface FetchUsersAction {
     type: UserActionTypes.FETCH_USERS
 }
@@ -35,4 +34,14 @@ export interface UserState {
     loading: boolean;
     error: null | string;
     isAuth: boolean
+}
+
+export interface IAuthorization {
+    login: string;
+    password: string;
+}
+
+export interface IRegistration extends IAuthorization {
+    name: string;
+    comment: string;
 }
