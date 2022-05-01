@@ -49,11 +49,6 @@ export const Users: FC = () => {
                     </div>
                 </div>
             </StyledUsers>
-
-
-
-
-
         </Container>
 
     );

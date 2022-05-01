@@ -1,10 +1,11 @@
 import React, {FC, useCallback, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
-import { publicRoutesEnum } from '../../constants/routes';
+import {publicRoutesEnum} from '../../constants/routes';
 import User from "../../services/User";
-import {toast} from 'materialize-css'
-
-
+import {toast} from 'materialize-css';
+import Container from '../../ui/Container';
+import {CheckboxStyled} from './style'
+import Center from '../../ui/Center'
 
 export interface IAuth {
     name: string;
@@ -29,21 +30,30 @@ export const Registration: FC = () => {
         setForm({...form, [e.target.name]: e.target.type === "checkbox" ? e.target.checked : e.target.value})
     }
 
-    const registration = useCallback(async(form:IAuth) => {
+    const registration = useCallback(async (form: IAuth) => {
         try {
             await User.registration(form);
             navigate(publicRoutesEnum.authorization)
+            toast({html: "users is create", classes: "succes"});
         } catch (e) {
-            toast({ html: "registration error ", classes: "error" });
+            toast({html: "registration error ", classes: "error"});
         }
-
     }, [])
+
+    const onSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        registration(form)
+    }
 
 
     return (
-        <div>
-            Registration
-        </div>
+        <Container>
+            <Center fullHeight horizontal vertical>
+
+            </Center>
+        </Container>
+
+
     );
 };
 
