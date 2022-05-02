@@ -1,7 +1,8 @@
 export enum UserActionTypes {
     FETCH_USERS = 'FETCH_USERS',
     FETCH_USERS_SUCCESS = 'FETCH_USERS_SUCCESS',
-    FETCH_USERS_ERROR = 'FETCH_USERS_ERROR'
+    FETCH_USERS_ERROR = 'FETCH_USERS_ERROR',
+    FETCH_USERS_AUTH = 'FETCH_USERS_AUTH'
 }
 
 interface FetchUsersAction {
@@ -18,7 +19,12 @@ interface FetchUsersErrorAction {
     payload:string;
 }
 
-export type UserAction = FetchUsersAction | FetchUsersSuccessAction | FetchUsersErrorAction
+interface FetchUsersAuthAction {
+    type: UserActionTypes.FETCH_USERS_AUTH;
+    payload:boolean;
+}
+
+export type UserAction = FetchUsersAction | FetchUsersSuccessAction | FetchUsersErrorAction | FetchUsersAuthAction
 
 export interface IUser {
     id: number;

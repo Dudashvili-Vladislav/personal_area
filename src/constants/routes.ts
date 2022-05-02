@@ -16,7 +16,7 @@ export enum privateRoutesEnum {
 
 export enum publicRoutesEnum {
     authorization ='/auth/login',
-    registration = 'auth/registration'
+    registration = '/auth/registration'
 }
 
 

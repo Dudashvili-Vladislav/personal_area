@@ -16,4 +16,17 @@ export const fetchUsers = ():any => {
             })
         }
     }
+};
+
+export const fetchAuth = (value:boolean):any =>{
+    return async (dispatch: Dispatch<UserAction>) => {
+        try {
+            dispatch({type: UserActionTypes.FETCH_USERS_AUTH, payload:value})
+        } catch (error) {
+            dispatch({
+                type: UserActionTypes.FETCH_USERS_ERROR,
+                payload: 'Error authorization'
+            })
+        }
+    }
 }
