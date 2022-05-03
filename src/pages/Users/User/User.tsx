@@ -11,15 +11,31 @@ export const User: FC<UserItemProps> = ({ user }) => {
   return (
     <>
       <StyledUser>
-        <div className="user__profile">
-          <div className="user__name info">
-            <div>{user.name ? user.name : "no name"}</div>
-          </div>
+        <div className="user">
+          <div className="user__container">
+            <div className="user__info">
+              {user.name ? user.name.substring(0, 10) + ".." : "no name"}
+            </div>
 
-          <div>{user.comment ? user.comment : "no comment info"}</div>
+            <div className="user__info">
+              {user.comment
+                ? user.comment.substring(0, 10) + ".."
+                : "no commented"}
+            </div>
 
-          <div className="user__created">
-            {user.created_at ? parseDate(user.created_at) : "no creation date"}
+            <div className="user__info">
+              {user.login ? user.login.substring(0, 10) + ".." : "no login"}
+            </div>
+
+            <div className="user__info">
+              {user.created_at
+                ? parseDate(user.created_at)
+                : "no creation date"}
+            </div>
+
+            <div className="user__info">
+              {user.updated_at ? parseDate(user.updated_at) : "no update"}
+            </div>
           </div>
         </div>
       </StyledUser>

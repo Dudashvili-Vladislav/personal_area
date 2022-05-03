@@ -31,12 +31,17 @@ export const Users: FC = () => {
 
   return (
     <Container>
-      <Title>Пользователи</Title>
+      <Center horizontal>
+        <Title>Пользователи</Title>
+      </Center>
+
       <StyledUsers>
         <div className="users">
           <div className="users__menu_wrap">
             <div className="users__menu">Name</div>
             <div className="users__menu">Comment</div>
+            <div className="users__menu">Login</div>
+            <div className="users__menu">Created</div>
             <div className="users__menu">Updated</div>
           </div>
           <div className="users__container">

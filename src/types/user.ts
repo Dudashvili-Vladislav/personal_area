@@ -29,6 +29,7 @@ export type UserAction = FetchUsersAction | FetchUsersSuccessAction | FetchUsers
 export interface IUser {
     id: number;
     name: string;
+    login: string;
     comment: string;
     created_at: string;
     updated_at: null | string;

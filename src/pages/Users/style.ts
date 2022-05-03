@@ -1,12 +1,21 @@
 import styled from "styled-components";
 
 export const StyledUsers = styled.div`
-  width: 100%;
+  max-width: 100%;
+
+  
   .users__menu_wrap {
-    display: flex;
-    justify-content: space-between;
+    padding-top: 10px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    text-align: center;
+    grid-auto-rows: 60px;
+    justify-content: center;
+    height: 60px;
+    align-items: center;
   }
   .users {
+    margin-top: 40px;
   }
 
   .users__container {
