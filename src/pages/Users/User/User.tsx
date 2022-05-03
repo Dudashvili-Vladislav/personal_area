@@ -1,17 +1,23 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import { IUser } from "../../../types/user";
 import { StyledUser } from "./style";
 import { parseDate } from "../../../utils/parseDate";
+import Modal from "../../../components/ui/Modal";
 
 interface UserItemProps {
   user: IUser;
 }
 
 export const User: FC<UserItemProps> = ({ user }) => {
+  const [openModal, setOpenModal] = useState<boolean>(false);
+
+  const openModalCallback = () => setOpenModal(true);
+  const closeModalCallback = () => setOpenModal(false);
+
   return (
     <>
       <StyledUser>
-        <div className="user">
+        <div className="user" onClick={openModalCallback}>
           <div className="user__container">
             <div className="user__info">
               {user.name ? user.name.substring(0, 10) + ".." : "no name"}
@@ -39,6 +45,7 @@ export const User: FC<UserItemProps> = ({ user }) => {
           </div>
         </div>
       </StyledUser>
+      {openModal && <Modal closeModal={closeModalCallback}>grger</Modal>}
     </>
   );
 };

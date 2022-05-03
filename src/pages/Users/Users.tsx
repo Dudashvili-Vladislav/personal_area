@@ -19,7 +19,7 @@ export const Users: FC = () => {
 
   if (loading) {
     return (
-      <Center horizontal>
+      <Center horizontal vertical fullHeight>
         <Loader />
       </Center>
     );
@@ -32,7 +32,7 @@ export const Users: FC = () => {
   return (
     <Container>
       <Center horizontal>
-        <Title>Пользователи</Title>
+        <Title>Users</Title>
       </Center>
 
       <StyledUsers>
