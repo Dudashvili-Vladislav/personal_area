@@ -9,8 +9,7 @@ export const CheckboxStyled = styled.div`
     width: unset;
     margin-top: 0px;
   }
-  div{
-   
-      width: 100%;
+  div {
+    width: 100%;
   }
 `;
