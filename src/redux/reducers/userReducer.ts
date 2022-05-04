@@ -1,25 +1,50 @@
-import {UserAction, UserActionTypes, UserState} from "../../types/user";
-
+import { UserAction, UserActionTypes, UserState } from "../../types/user";
 
 const initialState: UserState = {
-    users: [],
-    loading: false,
-    error: null,
-    isAuth: false,
-}
+  users: [],
+  loading: false,
+  error: null,
+  isAuth: false,
+};
 
-
-export const userReducer = (state = initialState, action: UserAction): UserState => {
-    switch (action.type) {
-        case UserActionTypes.FETCH_USERS_AUTH:
-            return{loading: false, error: null, users: [], isAuth: action.payload}
-        case UserActionTypes.FETCH_USERS:
-            return {loading: true, isAuth:true, error: null, users: []}
-        case UserActionTypes.FETCH_USERS_SUCCESS:
-            return {loading: false, isAuth:true, error: null, users: action.payload}
-        case UserActionTypes.FETCH_USERS_ERROR:
-            return {loading: false, isAuth:false, error: action.payload, users: []}
-        default:
-            return state
-    }
-}
+export const userReducer = (
+  state = initialState,
+  action: UserAction
+): UserState => {
+  switch (action.type) {
+    case UserActionTypes.FETCH_USERS_AUTH:
+      return { loading: false, error: null, users: [], isAuth: action.payload };
+    case UserActionTypes.FETCH_USERS:
+      return { ...state, loading: true, error: null, users: [] };
+    case UserActionTypes.FETCH_USERS_SUCCESS:
+      return { ...state, loading: false, error: null, users: action.payload };
+    case UserActionTypes.FETCH_USERS_ERROR:
+      return { ...state, loading: false, error: action.payload, users: [] };
+    case UserActionTypes.FETCH_CREATE_USER:
+      return {
+        ...state,
+        loading: false,
+        error: null,
+        users: [...state.users, action.payload],
+      };
+    case UserActionTypes.FETCH_UPDATE_USER:
+      return {
+        ...state,
+        loading: false,
+        error: null,
+        users: [
+          ...state.users.filter((el) => el.id !== action.payload.id),
+          action.payload,
+        ],
+      };
+    case UserActionTypes.FETCH_DELETE_USER:
+      return {
+        ...state,
+        loading: false,
+        error: null,
+        users: [...state.users.filter((el) => el.id !== action.payload.id)],
+      };
+    default:
+      return state;
+  }
+};
