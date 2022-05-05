@@ -8,8 +8,13 @@ import Loader from "../../components/Loader";
 import Center from "../../components/ui/Center";
 import { User } from "./User/User";
 import { StyledUsers } from "./style";
+import { IUser } from "../../types/user";
+import { useDispatch } from "react-redux";
+import { fetchDeleteUser } from "../../redux/action-creators/user";
 
 export const Users: FC = () => {
+  const dispatch = useDispatch();
+
   const { users, error, loading } = useTypedSelector((state) => state.user);
   const { fetchUsers } = useActions();
 
@@ -24,10 +29,15 @@ export const Users: FC = () => {
       </Center>
     );
   }
-
   if (error) {
     return <h1>{error}</h1>;
   }
+
+  const onDelete = (id) => {
+    dispatch(fetchDeleteUser(id));
+  };
+
+  const onEdit = (id: IUser) => {};
 
   return (
     <Container>
@@ -46,7 +56,14 @@ export const Users: FC = () => {
           </div>
           <div className="users__container">
             {users.length > 0
-              ? users.map((user) => <User key={user.id} user={user} />)
+              ? users.map((user) => (
+                  <User
+                    key={user.id}
+                    user={user}
+                    onDelete={onDelete}
+                    onEdit={onEdit}
+                  />
+                ))
               : "no users"}
           </div>
         </div>

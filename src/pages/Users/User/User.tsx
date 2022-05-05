@@ -3,12 +3,16 @@ import { IUser } from "../../../types/user";
 import { StyledUser } from "./style";
 import { parseDate } from "../../../utils/parseDate";
 import Modal from "../../../components/ui/Modal";
+import pen from "../../../images/icons/pen.svg";
+import remove from "../../../images/icons/remove.svg";
 
 interface UserItemProps {
   user: IUser;
+  onDelete: (e: React.MouseEvent<HTMLElement>) => void;
+  onEdit: (e: React.MouseEvent<HTMLElement>) => void;
 }
 
-export const User: FC<UserItemProps> = ({ user }) => {
+export const User: FC<UserItemProps> = ({ user, onEdit, onDelete }) => {
   const [openModal, setOpenModal] = useState<boolean>(false);
 
   const openModalCallback = () => setOpenModal(true);
@@ -17,7 +21,7 @@ export const User: FC<UserItemProps> = ({ user }) => {
   return (
     <>
       <StyledUser>
-        <div className="user" onClick={openModalCallback}>
+        <div className="user">
           <div className="user__container">
             <div className="user__info">
               {user.name ? user.name.substring(0, 10) + ".." : "no name"}
@@ -41,6 +45,18 @@ export const User: FC<UserItemProps> = ({ user }) => {
 
             <div className="user__info">
               {user.updated_at ? parseDate(user.updated_at) : "no update"}
+            </div>
+          </div>
+
+          <div className="station__buttons">
+            <div
+              className="station__buttons_item"
+              onClick={() => onDelete(user.id)}
+            >
+              <img src={remove} alt="remove" />
+            </div>
+            <div className="station__buttons_item" onClick={() => onEdit(id)}>
+              <img src={pen} alt="edit" />
             </div>
           </div>
         </div>
