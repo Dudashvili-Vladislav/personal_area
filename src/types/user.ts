@@ -61,6 +61,21 @@ export interface IUser {
   password: number;
 }
 
+export interface IUpdate {
+  id: number;
+  name: string;
+  login: string;
+  comment: string;
+  password: string;
+}
+
+export interface ICreate {
+  name: string;
+  login: string;
+  comment: string;
+  password: string;
+}
+
 export interface UserState {
   users: any[];
   loading: boolean;

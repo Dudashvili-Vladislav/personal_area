@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { fetchUsers } from "../../redux/action-creators/user";
 import { useActions } from "../../hooks/useActions";
@@ -11,12 +11,19 @@ import { StyledUsers } from "./style";
 import { IUser } from "../../types/user";
 import { useDispatch } from "react-redux";
 import { fetchDeleteUser } from "../../redux/action-creators/user";
+import Modal from "../../components/ui/Modal";
+import EditUser from "./EditUser";
+import CreateUser from "./CreateUser";
+import Button from "../../components/ui/Button";
 
 export const Users: FC = () => {
   const dispatch = useDispatch();
-
-  const { users, error, loading } = useTypedSelector((state) => state.user);
   const { fetchUsers } = useActions();
+
+  const [isOpenModal, setOpenModal] = useState<boolean>(false);
+  const [isOpenEditModal, setOpenEditModal] = useState<boolean>(false);
+  const { users, error, loading } = useTypedSelector((state) => state.user);
+  const [currentUser, serCurrentUser] = useState<any[]>(users);
 
   useEffect(() => {
     fetchUsers();
@@ -33,11 +40,21 @@ export const Users: FC = () => {
     return <h1>{error}</h1>;
   }
 
-  const onDelete = (id) => {
+  const onOpen = () => setOpenModal(true);
+  const onClose = () => setOpenModal(false);
+
+  const onOpenEdit = () => setOpenEditModal(true);
+  const onCloseEdit = () => setOpenEditModal(false);
+
+  const onDelete = (id: number) => {
     dispatch(fetchDeleteUser(id));
   };
 
-  const onEdit = (id: IUser) => {};
+  const onEdit = (id: number) => {
+    onOpenEdit();
+    serCurrentUser(users.filter((el) => el.id === id)[0]);
+  };
+  console.log("currentUser", currentUser);
 
   return (
     <Container>
@@ -65,6 +82,40 @@ export const Users: FC = () => {
                   />
                 ))
               : "no users"}
+            {isOpenModal && (
+              <Modal closeModal={onClose}>
+                <CreateUser
+                  closeModal={onClose}
+                  name={""}
+                  comment={""}
+                  login={""}
+                  password={""}
+                />
+              </Modal>
+            )}
+
+            {isOpenEditModal && (
+              <Modal closeModal={onCloseEdit}>
+                <EditUser
+                  user={currentUser}
+                  closeModal={onCloseEdit}
+                  name={""}
+                  comment={""}
+                  login={""}
+                  password={""}
+                />
+              </Modal>
+            )}
+            <div className="button__wrap">
+              <Button
+                className="users__button"
+                type="submit"
+                onClick={onOpen}
+                styleType="primary"
+              >
+                <span>Create user</span>
+              </Button>
+            </div>
           </div>
         </div>
       </StyledUsers>

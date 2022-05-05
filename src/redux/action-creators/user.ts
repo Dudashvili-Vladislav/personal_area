@@ -2,6 +2,8 @@ import { UserAction, UserActionTypes } from "../../types/user";
 import { Dispatch } from "redux";
 import User from "../../services/User";
 import { IUser } from "../../types/user";
+import { IUpdate } from "../../types/user";
+import { ICreate } from "../../types/user";
 
 export const fetchAuth = (value: boolean): any => {
   return async (dispatch: Dispatch<UserAction>) => {
@@ -34,7 +36,7 @@ export const fetchUsers = (): any => {
   };
 };
 
-export const fetchCreateUser = (user: IUser): any => {
+export const fetchCreateUser = (user: ICreate): any => {
   return async (dispatch: Dispatch<UserAction>) => {
     try {
       dispatch({ type: UserActionTypes.FETCH_USERS });
@@ -52,7 +54,7 @@ export const fetchCreateUser = (user: IUser): any => {
   };
 };
 
-export const fetchUpdateUser = (user: IUser): any => {
+export const fetchUpdateUser = (user: IUpdate): any => {
   return async (dispatch: Dispatch<UserAction>) => {
     try {
       dispatch({ type: UserActionTypes.FETCH_USERS });
@@ -70,11 +72,11 @@ export const fetchUpdateUser = (user: IUser): any => {
   };
 };
 
-export const fetchDeleteUser = (user: IUser): any => {
+export const fetchDeleteUser = (id: number): any => {
   return async (dispatch: Dispatch<UserAction>) => {
     try {
       dispatch({ type: UserActionTypes.FETCH_USERS });
-      const response = await User.fetchUpdateUser(user);
+      const response = await User.fetchDeleteUser(id);
       dispatch({
         type: UserActionTypes.FETCH_DELETE_USER,
         payload: response.data,

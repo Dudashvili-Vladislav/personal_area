@@ -8,8 +8,8 @@ import remove from "../../../images/icons/remove.svg";
 
 interface UserItemProps {
   user: IUser;
-  onDelete: (e: React.MouseEvent<HTMLElement>) => void;
-  onEdit: (e: React.MouseEvent<HTMLElement>) => void;
+  onDelete: (id: number) => void;
+  onEdit: (id: number) => void;
 }
 
 export const User: FC<UserItemProps> = ({ user, onEdit, onDelete }) => {
@@ -22,40 +22,40 @@ export const User: FC<UserItemProps> = ({ user, onEdit, onDelete }) => {
     <>
       <StyledUser>
         <div className="user">
-          <div className="user__container">
-            <div className="user__info">
+          <div className="user__info">
+            <div className="user__info_item ">
               {user.name ? user.name.substring(0, 10) + ".." : "no name"}
             </div>
 
-            <div className="user__info">
+            <div className="user__info_item">
               {user.comment
                 ? user.comment.substring(0, 10) + ".."
                 : "no commented"}
             </div>
 
-            <div className="user__info">
+            <div className="user__info_item">
               {user.login ? user.login.substring(0, 10) + ".." : "no login"}
             </div>
 
-            <div className="user__info">
+            <div className="user__info_item">
               {user.created_at
                 ? parseDate(user.created_at)
                 : "no creation date"}
             </div>
 
-            <div className="user__info">
+            <div className="user__info_item">
               {user.updated_at ? parseDate(user.updated_at) : "no update"}
             </div>
           </div>
 
-          <div className="station__buttons">
+          <div className="user__buttons">
             <div
-              className="station__buttons_item"
+              className="user__buttons_item"
               onClick={() => onDelete(user.id)}
             >
               <img src={remove} alt="remove" />
             </div>
-            <div className="station__buttons_item" onClick={() => onEdit(id)}>
+            <div className="user__buttons_item" onClick={() => onEdit(user.id)}>
               <img src={pen} alt="edit" />
             </div>
           </div>

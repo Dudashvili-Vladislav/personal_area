@@ -5,8 +5,9 @@ interface Props extends IStyledTypes {
   onClick: (e: React.MouseEvent<HTMLElement>) => void;
   loading?: boolean;
   type?: string | any;
-  children: React.ReactChild;
+  children: React.ReactNode;
   disabled?: boolean;
+  className?: string;
 }
 
 export const Button: FC<Props> = ({
@@ -17,6 +18,7 @@ export const Button: FC<Props> = ({
   loading,
   children,
   disabled,
+  className,
 }) => {
   return (
     <StyledButton
