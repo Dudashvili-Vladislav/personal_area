@@ -1,9 +1,9 @@
 # Test project
 
-## Specification This project implements CRUD methods
+## Specification 
 
 ```
-Specification This project implements CRUD methods
+This project implements CRUD methods
 ```
 
 ## Project setup
