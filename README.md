@@ -12,7 +12,7 @@ Specification This project implements CRUD methods
 npm install
 ```
 
-### Run your tests
+### Run 
 
 ```
 npm start
