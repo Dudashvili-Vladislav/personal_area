@@ -4,6 +4,16 @@ export const StyledUsers = styled.div`
   max-width: 100%;
   .users {
     margin-top: 40px;
+    width: 100%;
+  }
+
+  .users__menu_wraper {
+    display: flex;
+    align-items: center;
+  }
+
+  .users__form {
+    margin-left: 100px;
   }
 
   .users__menu_wrap {

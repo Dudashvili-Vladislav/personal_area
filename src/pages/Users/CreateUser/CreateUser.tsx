@@ -11,11 +11,11 @@ export interface IForm {
   password: string;
 }
 
-export interface IProps extends IForm {
+export interface IProps {
   closeModal: () => void;
 }
 
-export const CreateUser: FC<IProps> = ({ closeModal }: IProps) => {
+export const CreateUser: FC<IProps> = ({ closeModal }) => {
   const dispatch = useDispatch();
 
   const [form, setForm] = useState<IForm>({

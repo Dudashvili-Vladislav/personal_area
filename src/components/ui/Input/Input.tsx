@@ -8,6 +8,7 @@ type Props = {
   value?: any;
   placeholder: string;
   checked?: boolean;
+  className?: string;
 };
 
 export const Input: FC<Props> = ({
@@ -17,6 +18,7 @@ export const Input: FC<Props> = ({
   value,
   placeholder,
   checked,
+  className,
 }) => {
   return (
     <InputStyled

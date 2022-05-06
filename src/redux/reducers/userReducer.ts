@@ -13,13 +13,13 @@ export const userReducer = (
 ): UserState => {
   switch (action.type) {
     case UserActionTypes.FETCH_USERS_AUTH:
-      return { loading: false, error: null, users: [], isAuth: action.payload };
+      return { ...state, loading: false, error: null, isAuth: action.payload };
     case UserActionTypes.FETCH_USERS:
-      return { ...state, loading: true, error: null, users: [] };
+      return { ...state, loading: true, error: null };
     case UserActionTypes.FETCH_USERS_SUCCESS:
       return { ...state, loading: false, error: null, users: action.payload };
     case UserActionTypes.FETCH_USERS_ERROR:
-      return { ...state, loading: false, error: action.payload, users: [] };
+      return { ...state, loading: false, error: action.payload };
     case UserActionTypes.FETCH_CREATE_USER:
       return {
         ...state,

@@ -16,7 +16,7 @@ export const Modal: FC<IClose> = ({ width, height, closeModal, children }) => {
       <div className="modal-wrapper">
         <div className="modal" style={{ minWidth: width, minHeight: height }}>
           <img src={cross} alt="close" onClick={closeModal} className="close" />
-          <div> {children} </div>
+          <div className="children"> {children} </div>
         </div>
       </div>
       <div className="overlay"></div>

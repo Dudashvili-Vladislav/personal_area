@@ -10,7 +10,7 @@ export interface IForm {
   password: string;
 }
 
-export interface IProps extends IForm {
+export interface IProps {
   closeModal: () => void;
   user: any;
 }

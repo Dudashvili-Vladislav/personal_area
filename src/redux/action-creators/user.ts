@@ -1,7 +1,6 @@
 import { UserAction, UserActionTypes } from "../../types/user";
 import { Dispatch } from "redux";
 import User from "../../services/User";
-import { IUser } from "../../types/user";
 import { IUpdate } from "../../types/user";
 import { ICreate } from "../../types/user";
 

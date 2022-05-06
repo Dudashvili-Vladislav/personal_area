@@ -7,13 +7,15 @@ export const ModalStyled = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-
+  background: rgba(1, 2, 5, 0.6);
   .overlay {
     width: 100%;
     height: 100%;
     position: fixed;
     background-color: rgba(0, 0, 0, 0.8);
     z-index: 100;
+  }
+  .children {
   }
   .modal-wrapper {
     animation: openModal 0.3s forwards;
@@ -26,6 +28,9 @@ export const ModalStyled = styled.div`
     justify-content: center;
   }
   .modal {
+    background: #010205;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0px 0px 120px rgba(202, 45, 255, 0.8);
     background-color: white;
     padding: 20px;
     z-index: 700;

@@ -15,6 +15,7 @@ import Modal from "../../components/ui/Modal";
 import EditUser from "./EditUser";
 import CreateUser from "./CreateUser";
 import Button from "../../components/ui/Button";
+import Input from "../../components/ui/Input";
 
 export const Users: FC = () => {
   const dispatch = useDispatch();
@@ -24,6 +25,8 @@ export const Users: FC = () => {
   const [isOpenEditModal, setOpenEditModal] = useState<boolean>(false);
   const { users, error, loading } = useTypedSelector((state) => state.user);
   const [currentUser, serCurrentUser] = useState<any[]>(users);
+  const [value, setValue] = useState<string>("");
+  console.log("users", users);
 
   useEffect(() => {
     fetchUsers();
@@ -40,6 +43,11 @@ export const Users: FC = () => {
     return <h1>{error}</h1>;
   }
 
+  const filtredUsers = users.filter((el) => {
+    console.log("name", el.name);
+    return el.name.toLowerCase().includes(value.toLowerCase());
+  });
+
   const onOpen = () => setOpenModal(true);
   const onClose = () => setOpenModal(false);
 
@@ -54,7 +62,6 @@ export const Users: FC = () => {
     onOpenEdit();
     serCurrentUser(users.filter((el) => el.id === id)[0]);
   };
-  console.log("currentUser", currentUser);
 
   return (
     <Container>
@@ -64,16 +71,32 @@ export const Users: FC = () => {
 
       <StyledUsers>
         <div className="users">
-          <div className="users__menu_wrap">
-            <div className="users__menu">Name</div>
-            <div className="users__menu">Comment</div>
-            <div className="users__menu">Login</div>
-            <div className="users__menu">Created</div>
-            <div className="users__menu">Updated</div>
+          <div className="users__menu_wraper">
+            <div className="users__menu_wrap">
+              <div className="users__menu">Name</div>
+              <div className="users__menu">Comment</div>
+              <div className="users__menu">Login</div>
+              <div className="users__menu">Created</div>
+              <div className="users__menu">Updated</div>
+            </div>
+            <div className="users__form">
+              <form className="users__search_form">
+                <Input
+                  name="search"
+                  type="text"
+                  placeholder="Search users.."
+                  className="users__search_input"
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                    setValue(e.target.value)
+                  }
+                />
+              </form>
+            </div>
           </div>
+
           <div className="users__container">
-            {users.length > 0
-              ? users.map((user) => (
+            {filtredUsers.length > 0
+              ? filtredUsers.map((user) => (
                   <User
                     key={user.id}
                     user={user}
@@ -84,26 +107,13 @@ export const Users: FC = () => {
               : "no users"}
             {isOpenModal && (
               <Modal closeModal={onClose}>
-                <CreateUser
-                  closeModal={onClose}
-                  name={""}
-                  comment={""}
-                  login={""}
-                  password={""}
-                />
+                <CreateUser closeModal={onClose} />
               </Modal>
             )}
 
             {isOpenEditModal && (
               <Modal closeModal={onCloseEdit}>
-                <EditUser
-                  user={currentUser}
-                  closeModal={onCloseEdit}
-                  name={""}
-                  comment={""}
-                  login={""}
-                  password={""}
-                />
+                <EditUser user={currentUser} closeModal={onCloseEdit} />
               </Modal>
             )}
             <div className="button__wrap">
