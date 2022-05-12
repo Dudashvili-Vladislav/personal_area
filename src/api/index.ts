@@ -33,6 +33,10 @@ $api.interceptors.response.use(
         axios.defaults.headers.common["Authorization"] = token.data.user_jwt;
         localStorage.setItem("token", token.data.user_jwt);
       }
+      else {
+        localStorage.removeItem("token");
+        window.location.reload();
+      }
 
       return $api(originalRequest);
     }
